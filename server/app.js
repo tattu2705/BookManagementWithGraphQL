@@ -4,6 +4,7 @@ const typeDefs = require('./schema/schema')
 const resolvers = require('./resolver/resolver')
 const http = require('http')
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 const app = express()
 const mongoDataMethods = require('./data/db')
@@ -16,7 +17,7 @@ const server = new ApolloServer({
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb+srv://tattu2705:nosexnolife123@cluster0.zvdjjox.mongodb.net/BookShop')
+        await mongoose.connect(process.env.MONGO_URI) 
         console.log('MongoDB connected')
     }
     catch(err) {
